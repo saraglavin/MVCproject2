@@ -8,23 +8,41 @@ using Microsoft.EntityFrameworkCore;
 using MVC02.Data;
 using MVC02.Models;
 using MVC02.Models.ViewModels;
-
+using MVC02.Services;
 
 namespace MVC02.Controllers
 {
     public class ProductsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly AuthService _auth;
 
-        public ProductsController(ApplicationDbContext context)
+        public ProductsController(ApplicationDbContext context, AuthService auth)
         {
             _context = context;
+            _auth = auth;
         }
 
         // GET: Products
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Product.Include(x => x.Category).ToListAsync());
+            bool userBelongToRole = await _auth.DoesUserBelongToRole("Admin", User);
+
+
+            //Hämta den nuvarande användaren
+            //Kolla om användaren har en admin-roll via authservice
+            //beroende på om den är admin eller ej så returneras vanliga vyn eller en vy där products.ForSale == true
+
+            if (userBelongToRole == true)
+            {
+                return View(await _context.Product.Include(x => x.Category).Where(p => p.ForSale == true).ToListAsync());
+            } else
+            {
+                return View(await _context.Product.Include(x => x.Category).ToListAsync());
+            }
+
+
+
         }
 
         public async Task<IActionResult> ShowByCategory(int? id) {
