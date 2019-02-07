@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 
@@ -26,6 +27,18 @@ namespace MVC02.Services
             return user != null;
 
         }
+
+        internal async Task<bool> DoesUserBelongToRole(string rolename, ClaimsPrincipal user)
+        {
+            //kolla om användaren har en viss roll, returnera sant eller falsk
+
+            var user2 = await _userManager.GetUserAsync(user); //Returnerar Task<User> när vi vill ha identityuser =(
+
+            bool userHasRole = await _userManager.IsInRoleAsync(user2, "Admin");
+
+            return userHasRole;
+        }
+
         public async Task AddRoleToUser(string email, string role)
         {
             IdentityResult roleResult;

@@ -27,6 +27,9 @@ namespace MVC02.Controllers
         // GET: Products
         public async Task<IActionResult> Index()
         {
+<<<<<<< HEAD
+            
+=======
             bool userBelongToRole = await _auth.DoesUserBelongToRole("Admin", User);
 
 
@@ -44,6 +47,7 @@ namespace MVC02.Controllers
 
 
 
+>>>>>>> 1ec03b02ba5edcb6588256f0f8b4139bae3edd23
         }
 
         public async Task<IActionResult> ShowByCategory(int? id) {
