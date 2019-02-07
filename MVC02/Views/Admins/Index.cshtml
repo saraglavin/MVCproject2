@@ -1,0 +1,30 @@
+﻿@model MVC02.Models.ViewModels.AddRoleVm
+
+<h2>Index</h2>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddRoleForUser">
+            <div class="form-group">
+                <div asp-validation-summary="All" class="text-danger"></div>
+
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Role" class="control-label"></label>
+                <input asp-for="Role" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
