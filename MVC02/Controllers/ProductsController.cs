@@ -32,7 +32,7 @@ namespace MVC02.Controllers
 
             if (userBelongToRole == true)
             {
-                return View("AdminIndex", await _context.Product.Include(x => x.Category).ToListAsync());
+                return View("Index", await _context.Product.Include(x => x.Category).ToListAsync());
             }
             else //Om användaren ej är inloggad eller bara en vanlig användare returneras denna vy
             {
