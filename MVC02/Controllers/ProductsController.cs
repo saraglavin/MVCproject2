@@ -32,7 +32,7 @@ namespace MVC02.Controllers
 
             if (userBelongToRole == true)
             {
-                return View("AdminIndex", await _context.Product.Include(x => x.Category).ToListAsync());
+                return View("Index", await _context.Product.Include(x => x.Category).ToListAsync());
             }
             else //Om användaren ej är inloggad eller bara en vanlig användare returneras denna vy
             {
@@ -76,7 +76,7 @@ namespace MVC02.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Price,CategoryId,ForSale")] Product product)
+        public async Task<IActionResult> Create([Bind("Id,Name,Price,CategoryId,ForSale,Stock")] Product product)
         {
             
 
@@ -115,7 +115,7 @@ namespace MVC02.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,CategoryId,ForSale")] Product product)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Price,CategoryId,ForSale,Stock")] Product product)
         {
             if (id != product.Id)
             {

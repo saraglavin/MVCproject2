@@ -6,9 +6,12 @@
 
 <h2>Index</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
 <table class="table">
     <thead>
         <tr>
@@ -25,10 +28,13 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
-                <a asp-controller="Products" asp-action="ShowByCategory" asp-route-id="@item.Id">Show all products in category</a>
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                @if (User.IsInRole("Admin"))
+                {
+                <span> | </span><a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                <span> | </span><a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                }
+                <span> | </span><a asp-controller="Products" asp-action="ShowByCategory" asp-route-id="@item.Id">Show all products in category</a>
 
             </td>
         </tr>
