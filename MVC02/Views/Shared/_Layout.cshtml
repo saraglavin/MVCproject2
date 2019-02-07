@@ -18,7 +18,7 @@
 </head>
 
 <body>
-    <nav class="navbar  navbar-inverse navbar-fixed-top" >
+    <nav class="navbar  navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -36,7 +36,10 @@
                     <li><a asp-area="" asp-controller="Home" id="togreen" asp-action="Contact">Contact</a></li>
                     <li><a asp-area="" asp-controller="Products" id="togreen" asp-action="Index">Products</a></li>
                     <li><a asp-area="" asp-controller="Categories" id="togreen" asp-action="Index">Categories</a></li>
-                    <li><a asp-area="" asp-controller="Admins" id="togreen" asp-action="Index">Admin</a></li>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li><a asp-area="" asp-controller="Admins" id="togreen" asp-action="Index">Admin</a></li>
+                    }
 
                 </ul>
                 <partial name="_LoginPartial" />

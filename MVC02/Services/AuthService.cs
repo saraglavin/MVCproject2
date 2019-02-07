@@ -28,7 +28,7 @@ namespace MVC02.Services
 
         }
 
-        internal async Task<bool> DoesUserBelongToRole(string rolename, ClaimsPrincipal user)
+        internal async Task<bool>DoesUserBelongToRole(string rolename, ClaimsPrincipal user)
         {
             //kolla om användaren har en viss roll, returnera sant eller falsk
 
