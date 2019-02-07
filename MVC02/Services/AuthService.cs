@@ -32,9 +32,9 @@ namespace MVC02.Services
         {
             //kolla om användaren har en viss roll, returnera sant eller falsk
 
-            var user2 = await _userManager.GetUserAsync(user); //Returnerar Task<User> när vi vill ha identityuser =(
+            var user2 = await _userManager.GetUserAsync(user);
 
-            bool userHasRole = await _userManager.IsInRoleAsync(user2, "Admin");
+            bool userHasRole = await _userManager.IsInRoleAsync(user2, rolename);
 
             return userHasRole;
         }

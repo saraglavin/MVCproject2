@@ -36,10 +36,11 @@ namespace MVC02.Controllers
 
             if (userBelongToRole == true)
             {
-                return View(await _context.Product.Include(x => x.Category).Where(p => p.ForSale == true).ToListAsync());
-            } else
-            {
                 return View(await _context.Product.Include(x => x.Category).ToListAsync());
+            }
+            else
+            {
+                return View(await _context.Product.Include(x => x.Category).Where(p => p.ForSale == true).ToListAsync());
             }
 
 
