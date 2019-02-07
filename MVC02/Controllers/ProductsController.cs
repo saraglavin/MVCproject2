@@ -27,24 +27,17 @@ namespace MVC02.Controllers
         // GET: Products
         public async Task<IActionResult> Index()
         {
+
             bool userBelongToRole = await _auth.DoesUserBelongToRole("Admin", User);
-
-
-            //Hämta den nuvarande användaren
-            //Kolla om användaren har en admin-roll via authservice
-            //beroende på om den är admin eller ej så returneras vanliga vyn eller en vy där products.ForSale == true
 
             if (userBelongToRole == true)
             {
-                return View(await _context.Product.Include(x => x.Category).ToListAsync());
+                return View("AdminIndex", await _context.Product.Include(x => x.Category).ToListAsync());
             }
-            else
+            else //Om användaren ej är inloggad eller bara en vanlig användare returneras denna vy
             {
-                return View(await _context.Product.Include(x => x.Category).Where(p => p.ForSale == true).ToListAsync());
+                return View("Index", await _context.Product.Include(x => x.Category).Where(p => p.ForSale == true).ToListAsync());
             }
-
-
-
         }
 
         public async Task<IActionResult> ShowByCategory(int? id) {
