@@ -28,23 +28,33 @@ namespace MVC02.Controllers
 
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message"] = "";
 
             return View();
         }
 
         public IActionResult ContactDone(ContactVm contact)
         {
-
-
-            string path = @"C:\Project\AcceleratedLearning\MVC\MVCProject02\MVC02\Data\Textfile\Messages.txt";
-            string newthing = $"Namn: {contact.Name}, Email: {contact.Email}, Subject: {contact.Subject}, Message: {contact.Message} \n";
-            using (StreamWriter sw = System.IO.File.AppendText(path))
+            if (ModelState.IsValid)
             {
-                sw.WriteLine(newthing);
+                string path = @"C:\Project\AcceleratedLearning\MVC\MVCProject02\MVC02\Data\Textfile\Messages.txt";
+                string newthing = $"Namn: {contact.Name}, Email: {contact.Email}, Subject: {contact.Subject}, Message: {contact.Message}";
+                using (StreamWriter sw = System.IO.File.AppendText(path))
+                {
+                    sw.WriteLine(newthing);
+                }
+
+                ViewData["Message"] = "Tack för ditt meddelande, vi hör av oss.";
+                return View("Contact");
+            }
+            else
+            {
+                ViewData["Message"] = "Någnoting gick fel, försök igen.";
+                return View("Contact");
+
             }
 
-            return View("Contact");
+
         }
 
         public IActionResult Privacy()
