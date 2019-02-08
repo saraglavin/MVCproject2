@@ -3,17 +3,36 @@
 <h2>Admin</h2>
 <div class="row" id="displayer">
     <div class="col-md-4">
-        <form asp-action="AddRoleForUser">
+        <form asp-controller="Admins" asp-action="AddRoleForUser">
+
             <div class="form-group">
                 <div asp-validation-summary="All" class="text-danger"></div>
 
                 <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
+                <select asp-for="Email" class="form-control" />
             </div>
+
+            @*<div class="form-group">
+                <label asp-for="AllUsers">Users</label>
+                <select class="form-control" asp-for="AllUsers" asp-items="@Model.AllUsers">
+                    <option>Please select one</option>
+                </select>
+            </div>*@
+
             <div class="form-group">
+                <div asp-validation-summary="All" class="text-danger"></div>
+
                 <label asp-for="Role" class="control-label"></label>
                 <input asp-for="Role" class="form-control" />
             </div>
+
+            @*<div class="form-group">
+                <label asp-for="AllRoles">Roles</label>
+                <select class="form-control" asp-for="AllRoles" asp-items="@Model.AllRoles">
+                    <option>Please select one</option>
+                </select>
+            </div>*@
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
@@ -25,6 +44,3 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
