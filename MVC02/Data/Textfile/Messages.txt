@@ -1,2 +1,4 @@
-﻿Namn: Hej, Email: Hej@hej.se, Subject: Work, Message: Jag vill ha jobb
-Namn: Sara, Email: Hej@hej.se, Subject: other, Message: Hej hur mår ni?
+﻿Sara|hej@saraglavin.se|Work|Jag vill ha jobb
+Hallååååå|Hej@hej.se|Orderdetails|Vart är mina saker? 
+Hallååååå|Hej@hej.se|Orderdetails|Vart är mina saker? 
+Heidi|heidivonjahf@hotmail.com|other|hejsan

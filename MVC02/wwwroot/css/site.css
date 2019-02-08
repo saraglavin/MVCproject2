@@ -82,3 +82,14 @@ body {
     transform: translateX(0px);
     color: forestgreen;
 }
+
+
+#messageDispalyer
+{
+    width: 600px;
+    border: double;
+    border-width: 5px;
+    border-color: cadetblue;
+    margin: 20px;
+    padding: 20px;
+}

@@ -38,7 +38,7 @@ namespace MVC02.Controllers
             if (ModelState.IsValid)
             {
                 string path = @"C:\Project\AcceleratedLearning\MVC\MVCProject02\MVC02\Data\Textfile\Messages.txt";
-                string newthing = $"Namn: {contact.Name}, Email: {contact.Email}, Subject: {contact.Subject}, Message: {contact.Message}";
+                string newthing = $"{contact.Name}|{contact.Email}|{contact.Subject}|{contact.Message}";
                 using (StreamWriter sw = System.IO.File.AppendText(path))
                 {
                     sw.WriteLine(newthing);
@@ -70,11 +70,18 @@ namespace MVC02.Controllers
         public IActionResult Messages()
         {
             string[] messages = System.IO.File.ReadAllLines(@"C:\Project\AcceleratedLearning\MVC\MVCProject02\MVC02\Data\Textfile\Messages.txt");
-            List<string> newList = new List<string>();
+            List<ContactVm> newList = new List<ContactVm>();
 
             foreach (var item in messages)
             {
-              newList.Add(item);
+                ContactVm tempContact = new ContactVm();
+                string[] splittedItem = item.Split('|');
+
+                tempContact.Name = splittedItem[0];
+                tempContact.Email = splittedItem[1];
+                tempContact.Subject = splittedItem[2];
+                tempContact.Message = splittedItem[3];
+                newList.Add(tempContact);
             }
 
             ViewData["Messages"] = newList;
