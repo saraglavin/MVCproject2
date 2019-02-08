@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - MVC02</title>
 
+    <link href="https://fonts.googleapis.com/css?family=Advent+Pro|Special+Elite" rel="stylesheet">
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
@@ -18,7 +19,7 @@
 </head>
 
 <body>
-    <nav class="navbar  navbar-inverse navbar-fixed-top">
+    <nav class="navbar  navbar-inverse navbar-fixed-top" id="navbar1">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -27,10 +28,10 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand" id="togreen">Sara & Co</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand" id="togreen">The Store</a>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="cl-effect-1 nav navbar-nav ">
+            <div class="navbar-collapse collapse" >
+                <ul class="cl-effect-1 nav navbar-nav">
                     <li><a asp-area="" asp-controller="Home" id="togreen" asp-action="Index">Home</a></li>
                     <li><a asp-area="" asp-controller="Home" id="togreen" asp-action="About">About</a></li>
                     <li><a asp-area="" asp-controller="Home" id="togreen" asp-action="Contact">Contact</a></li>
@@ -39,6 +40,8 @@
                     @if (User.IsInRole("Admin"))
                     {
                         <li><a asp-area="" asp-controller="Admins" id="togreen" asp-action="Index">Admin</a></li>
+                        <li><a asp-area="" asp-controller="Home" id="togreen" asp-action="Messages">Messages</a></li>
+                        
                     }
 
                 </ul>
