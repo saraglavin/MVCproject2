@@ -6,32 +6,18 @@
         <form asp-controller="Admins" asp-action="AddRoleForUser">
 
             <div class="form-group">
-                <div asp-validation-summary="All" class="text-danger"></div>
-
-                <label asp-for="Email" class="control-label"></label>
-                <select asp-for="Email" class="form-control" />
-            </div>
-
-            @*<div class="form-group">
-                <label asp-for="AllUsers">Users</label>
-                <select class="form-control" asp-for="AllUsers" asp-items="@Model.AllUsers">
+                <label asp-for="Email">Users</label>
+                <select class="form-control" asp-for="Email" asp-items="@Model.AllUsers">
                     <option>Please select one</option>
                 </select>
-            </div>*@
+            </div>
 
             <div class="form-group">
-                <div asp-validation-summary="All" class="text-danger"></div>
-
-                <label asp-for="Role" class="control-label"></label>
-                <input asp-for="Role" class="form-control" />
-            </div>
-
-            @*<div class="form-group">
-                <label asp-for="AllRoles">Roles</label>
-                <select class="form-control" asp-for="AllRoles" asp-items="@Model.AllRoles">
+                <label asp-for="Role">Roles</label>
+                <select class="form-control" asp-for="Role" asp-items="@Model.AllRoles">
                     <option>Please select one</option>
                 </select>
-            </div>*@
+            </div>
 
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />

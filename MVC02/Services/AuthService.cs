@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using MVC02.Models.ViewModels;
 
 namespace MVC02.Services
 {
@@ -18,8 +19,6 @@ namespace MVC02.Services
             _roleManager = roleManager;
             _signInManager = signInManager;
         }
-
-        // din kod här
 
         public async Task<bool> UserExist(string email)
         {
@@ -43,17 +42,14 @@ namespace MVC02.Services
             return userHasRole;
         }
 
-        public async Task AddRoleToUser(string email, string role)
+        public async Task AddRoleToUser(AddRoleVm addrole)
         {
             IdentityResult roleResult;
-            var role2 = new IdentityRole(role);
+            var role2 = new IdentityRole(addrole.Role);
             roleResult = await _roleManager.CreateAsync(role2);
 
-            //var roles = _roleManager.Roles; ev behöva göra metod i authservice som hämtar roller och användare
-
-
-            IdentityUser user = await _userManager.FindByEmailAsync(email);
-            await _userManager.AddToRoleAsync(user, role);
+            IdentityUser user = await _userManager.FindByEmailAsync(addrole.Email);
+            await _userManager.AddToRoleAsync(user, addrole.Role);
 
         }
 

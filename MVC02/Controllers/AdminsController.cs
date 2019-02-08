@@ -24,38 +24,19 @@ namespace Mvc02.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var vm = new AddRoleVm
+            {
+                AllRoles = _context.Roles.Select(role => new SelectListItem() { Text = role.Name, Value = role.Name }),
+                AllUsers = _context.Users.Select(user => new SelectListItem() { Text = user.Email, Value = user.Email })
+            };
+            return View(vm);
         }
 
-        public IActionResult AddRoleForUser(AddRoleVm addrole) // Tog bort AddRoleVm addrole i parentesen
+        public async Task<IActionResult> AddRoleForUser(AddRoleVm addrole)
         {
-            //Vi vill kolla om användaren har rollen sedan innan
 
-
-            //var truefalse = _auth.UserExist(addrole.Email);
-
-            //var vm = new AddRoleVm();
-            addrole.AllRoles = _context.Roles.Select(role => new SelectListItem() { Text = role.Name, Value = role.Id.ToString() });
-           addrole.AllUsers = _context.Users.Select(user => new SelectListItem() { Text = user.Email, Value = user.Id.ToString() });
-            return View("Index", addrole);
-
-            //if (await truefalse)
-            //{
-            //    if (!ModelState.IsValid)
-            //    {
-            //        return View("Index");
-            //    }
-
-            //    await _auth.AddRoleToUser(addrole.Email, addrole.Role);
-            //    return View("SuccesAddRole", addrole);
-
-            //}
-
-            //else
-            //{
-            //    ModelState.AddModelError("UserDontExist", $"Användaren med email {addrole.Email} finns inte.");
-            //    return View("Index");
-            //}
+                await _auth.AddRoleToUser(addrole);
+                return View("SuccesAddRole", addrole);
 
         }
     }
