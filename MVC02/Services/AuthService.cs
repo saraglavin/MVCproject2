@@ -49,6 +49,8 @@ namespace MVC02.Services
             var role2 = new IdentityRole(role);
             roleResult = await _roleManager.CreateAsync(role2);
 
+            //var roles = _roleManager.Roles; ev behöva göra metod i authservice som hämtar roller och användare
+
 
             IdentityUser user = await _userManager.FindByEmailAsync(email);
             await _userManager.AddToRoleAsync(user, role);
