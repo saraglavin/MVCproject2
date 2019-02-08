@@ -5,6 +5,10 @@
     <div class="col-md-4">
         <form asp-controller="Admins" asp-action="AddRoleForUser">
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> b0a3edc121cb9e4a0d0154187b039d9241369d1f
             <div class="form-group">
                 <label asp-for="Email">Users</label>
                 <select class="form-control" asp-for="Email" asp-items="@Model.AllUsers">

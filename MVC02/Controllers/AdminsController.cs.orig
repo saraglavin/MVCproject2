@@ -24,6 +24,12 @@ namespace Mvc02.Controllers
 
         public IActionResult Index()
         {
+<<<<<<< HEAD
+            var vm = new AddRoleVm();
+            vm.AllRoles = _context.Roles.Select(role => new SelectListItem() { Text = role.Name, Value = role.Id.ToString() });
+            vm.AllUsers = _context.Users.Select(user => new SelectListItem() { Text = user.Email, Value = user.Id.ToString() });
+            return View("Index", vm);
+=======
             var vm = new AddRoleVm
             {
                 AllRoles = _context.Roles.Select(role => new SelectListItem() { Text = role.Name, Value = role.Name }),
@@ -38,6 +44,8 @@ namespace Mvc02.Controllers
                 await _auth.AddRoleToUser(addrole);
                 return View("SuccesAddRole", addrole);
 
+>>>>>>> b0a3edc121cb9e4a0d0154187b039d9241369d1f
         }
+        
     }
 }

@@ -37,12 +37,12 @@
                     <li><a asp-area="" asp-controller="Home" id="togreen" asp-action="Contact">Contact</a></li>
                     <li><a asp-area="" asp-controller="Products" id="togreen" asp-action="Index">Products</a></li>
                     <li><a asp-area="" asp-controller="Categories" id="togreen" asp-action="Index">Categories</a></li>
-                    @if (User.IsInRole("Admin"))
-                    {
+                    @*@if (User.IsInRole("Admin"))
+                    {*@
                         <li><a asp-area="" asp-controller="Admins" id="togreen" asp-action="Index">Admin</a></li>
                         <li><a asp-area="" asp-controller="Home" id="togreen" asp-action="Messages">Messages</a></li>
-                        
-                    }
+
+                        @*}*@
 
                 </ul>
                 <partial name="_LoginPartial" />
