@@ -53,8 +53,6 @@ namespace MVC02.Controllers
                 return View("Contact");
 
             }
-
-
         }
 
         public IActionResult Privacy()
@@ -67,5 +65,25 @@ namespace MVC02.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+
+        public IActionResult Messages()
+        {
+            string[] messages = System.IO.File.ReadAllLines(@"C:\Project\AcceleratedLearning\MVC\MVCProject02\MVC02\Data\Textfile\Messages.txt");
+            List<string> newList = new List<string>();
+
+            foreach (var item in messages)
+            {
+              newList.Add(item);
+            }
+
+            ViewData["Messages"] = newList;
+
+            return View();
+        }
+
+
+
+
     }
 }

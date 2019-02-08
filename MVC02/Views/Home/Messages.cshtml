@@ -1,0 +1,14 @@
+﻿
+<h1>Messages</h1>
+
+@{
+    List<string> messages = (List<string>) ViewData["Messages"];
+
+}
+
+@foreach (string x in messages)
+{
+    <h4>Meddelande:</h4><br />
+    <p>@x</p>
+    <br />
+}
